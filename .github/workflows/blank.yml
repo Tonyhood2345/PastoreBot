@@ -1,9 +1,9 @@
 name: Bot Ora e Domani
 
 on:
-# [KILL SWITCH META DISATTIVATO]   schedule:
+# [KILL SWITCH META DISATTIVATO] schedule disattivato
     # DOMANI MATTINA (e tutti i giorni) alle 08:00 Italiane (07:00 UTC)
-    - cron: '0 7 * * *'
+# [KILL SWITCH META DISATTIVATO]   - cron: '0 7 * * *'
 
   # Questo serve per farlo partire ORA (manualmente col pulsante)
   workflow_dispatch:
