@@ -216,25 +216,9 @@ def send_telegram(img_bytes, caption):
     except Exception as e: print(f"❌ Telegram Error: {e}")
 
 def post_facebook(img_bytes, message):
-    # ⛔ KILL SWITCH META ATTIVO: Chiamata a Meta Facebook bloccata
-    print("⛔ [KILL SWITCH META] Chiamata a graph.facebook.com bloccata. Convoglio su Telegram...")
-    try:
-        post_telegram(img_bytes, f"✝️ *[POST CHIESA — CONVOGLIATO SU TELEGRAM]*
-_(Meta/Facebook bloccato)_
-
-{message}")
-    except Exception as e:
-        print(f"⚠️ Errore convogliamento Telegram: {e}")
+    """Disattivato: invio attivo solo su Telegram."""
+    print("🔒 [SOLO TELEGRAM] Pubblicazione Facebook disattivata.")
     return
-def post_facebook_ORIGINALE(img_bytes, message):
-    if not FACEBOOK_TOKEN: return
-    url = f"https://graph.facebook.com/v19.0/{PAGE_ID}/photos?access_token={FACEBOOK_TOKEN}"
-    files = {'file': ('img.png', img_bytes, 'image/png')}
-    data = {'message': message, 'published': 'true'}
-    try:
-        requests.post(url, files=files, data=data)
-        print("✅ Facebook OK")
-    except Exception as e: print(f"❌ Facebook Error: {e}")
 
 def trigger_make_webhook(row, img_bytes, meditazione_text):
     """Invia dati E immagine a Make.com"""
@@ -292,8 +276,7 @@ if __name__ == "__main__":
         # 1. Telegram
         send_telegram(img_data, caption)
         
-        # 2. Facebook
-        post_facebook(img_data, caption)
+        # 2. Facebook disattivato (solo Telegram)
         
         # 3. Make.com
         trigger_make_webhook(row, img_data, meditazione)
